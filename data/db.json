@@ -1,0 +1,90 @@
+{
+  "items": [
+    {
+      "id": 0,
+      "title": "Tomato",
+      "price": 250,
+      "image": "../src/assets/tomato.png",
+      "stock": 20
+    },
+    {
+      "id": 1,
+      "title": "Cobbage",
+      "price": 150,
+      "image": "../src/assets/cobbage.png",
+      "stock": 20
+    },
+    {
+      "id": 2,
+      "title": "Spenich",
+      "price": 125,
+      "image": "../src/assets/spinach.png",
+      "stock": 15
+    },
+    {
+      "id": 3,
+      "title": "Raddish",
+      "price": 200,
+      "image": "../src/assets/raddish.png",
+      "stock": 0
+    },
+    {
+      "id": 4,
+      "title": "Carrot",
+      "price": 140,
+      "image": "../src/assets/carrot.png",
+      "stock": 10
+    },
+    {
+      "id": 5,
+      "title": "Lemon",
+      "price": 150,
+      "image": "../src/assets/lemon.png",
+      "stock": 30
+    },
+    {
+      "id": 6,
+      "title": "Potato",
+      "price": 200,
+      "image": "../src/assets/potato.png",
+      "stock": 50
+    },
+    {
+      "id": 7,
+      "title": "Coliflower",
+      "price": 125,
+      "image": "../src/assets/coliflower.png",
+      "stock": 7
+    },
+    {
+      "id": 8,
+      "title": "Beetroot",
+      "price": 125,
+      "image": "../src/assets/beetroot.png",
+      "stock": 15
+    },
+    {
+      "id": 9,
+      "title": "Turnip",
+      "price": 125,
+      "image": "../src/assets/shaljum.png",
+      "stock": 5
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "fname": "Masood",
+      "lname": "Ur Rehman",
+      "email": "masoodsse@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": 2,
+      "fname": "Sulaiman",
+      "lname": "masoood",
+      "email": "sulaiman@gmail.com",
+      "password": "123456"
+    }
+  ]
+}
