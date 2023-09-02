@@ -1,8 +1,30 @@
 <template>
   <div class="main"></div>
   <div class="navs"><Header></Header></div>
-  <div>
-    <h1>Enter your Card Details for Payment</h1>
+  <div class="payment">
+    <h1>Payment Information</h1>
+    <form action="">
+      <div class="input-control">
+        <label for="name">Name on card</label>
+        <input type="text" name="name" />
+      </div>
+      <div class="input-control">
+        <label for="cardnum">Card No</label>
+        <input type="Number" name="cardnum" />
+      </div>
+      <div class="input-control">
+        <label for="expiry">Expiration Date</label>
+        <input type="text" name="expiry" />
+      </div>
+      <div class="input-control">
+        <label for="expiry"> </label>
+        <input type="text" name="expiry" />
+      </div>
+      <div class="input-control">
+        <label for="CVC"> </label>
+        <input type="Number" name="CVC" />
+      </div>
+    </form>
   </div>
 </template>
 
@@ -35,5 +57,8 @@ h1 {
   background-repeat: no-repeat;
   background-position: center;
   filter: blur(5px);
+}
+.payment {
+  width: 80%;
 }
 </style>
