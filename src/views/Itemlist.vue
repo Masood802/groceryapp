@@ -14,7 +14,7 @@
       >
         Add to Cart
       </button>
-      <button v-else @click="router.push('/registration-form')">
+      <button v-else @click="router.push('/sign-in')">
         Signin to add items
       </button>
       <button

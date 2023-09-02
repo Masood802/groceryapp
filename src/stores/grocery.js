@@ -19,11 +19,11 @@ export const useGroceryStore = defineStore("grocery", () => {
       try {
         storeditem = JSON.parse(storeditem);
         cartitems.value = storeditem;
-      } catch (e) {}
+      } catch (e) {
+        error = e.massage;
+        throw error;
+      }
     }
-  });
-  onUnmounted(() => {
-    localStorage.clear();
   });
   function UpdateCart() {
     localStorage.setItem("cart", JSON.stringify(cartitems.value));
@@ -32,12 +32,13 @@ export const useGroceryStore = defineStore("grocery", () => {
     let res = await axios.get(
       `http://localhost:3000/users?email=${email.value}&password=${password.value}`
     );
-    if (res.data) {
+    if (res.status === 200) {
       user.value = await res.data[0];
       alert("You have successfully loged in");
-      console.log(user.value.fname);
+      console.log(res.data);
       router.push("/");
       localStorage.setItem("user", JSON.stringify(user.value));
+      console.log(localStorage);
       logedin.value = true;
       email.value = "";
       password.value = "";
@@ -69,5 +70,6 @@ export const useGroceryStore = defineStore("grocery", () => {
     router,
     logedin,
     user,
+    items,
   };
 });

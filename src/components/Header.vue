@@ -16,7 +16,7 @@
       <router-link :to="{ path: '/sign-in' }"
         ><span v-if="store.logedin === false">Signin</span
         ><span @click="store.signout" v-else
-          >Welcome {{ store.user.fname }}</span
+          >Welcome {{ store.user.firstName }}</span
         ></router-link
       >
       <router-link

@@ -6,22 +6,60 @@
       <h1>Grocery <span>Store</span></h1>
     </div>
     <h1>Registraion Form</h1>
-    <form @submit.prevent="">
+    <form @submit.prevent="Signup">
       <div class="inputs">
-        <label for="name">Name:</label>
-        <input type="text" name="name" placeholder="Your Name" />
+        <label for="name">First Name:</label>
+        <input
+          type="text"
+          name="fname"
+          placeholder="Your First Name"
+          v-model="user.fname"
+        />
+      </div>
+      <div class="inputs">
+        <label for="name">Last Name:</label>
+        <input
+          type="text"
+          name="lname"
+          placeholder="Your Last Name"
+          v-model="user.lname"
+        />
       </div>
       <div class="inputs">
         <label for="email">Email:</label>
-        <input type="email" name="email" placeholder="Your Email" />
+        <input
+          type="email"
+          name="email"
+          placeholder="Your Email"
+          v-model="user.email"
+        />
       </div>
       <div class="inputs">
         <label for="cell">Mobile #:</label>
-        <input type="phone" name="cell" placeholder="Your Mobile No." />
+        <input
+          type="phone"
+          name="cell"
+          placeholder="Your Mobile No."
+          v-model="user.cellno"
+        />
       </div>
       <div class="inputs">
         <label for="password">Password:</label>
-        <input type="password" name="password" placeholder="Your Password" />
+        <input
+          type="password"
+          name="password"
+          placeholder="Your Password"
+          v-model="user.password"
+        />
+      </div>
+      <div class="inputs">
+        <label for="confirmpassword">Confirm Password:</label>
+        <input
+          type="password"
+          name="password"
+          placeholder="Confirm Your Password"
+          v-model="user.confirmpassword"
+        />
       </div>
       <div class="buttons">
         <button>Register</button>
@@ -36,8 +74,37 @@
 
 <script setup>
 import { useRouter } from "vue-router";
+import { ref } from "vue";
+import axios from "axios";
 
 let router = useRouter();
+let user = ref({
+  fname: "",
+  lname: "",
+  cellno: "",
+  email: "",
+  password: "",
+  confirmpassword: "",
+});
+async function Signup() {
+  axios
+    .post("http://localhost:3000/users", {
+      firstName: user.value.fname,
+      lastName: user.value.lname,
+      cellno: user.value.cellno,
+      email: user.value.email,
+      password: user.value.password,
+      confirmpassword: user.value.confirmpassword,
+    })
+    .then(function (res) {
+      console.log(res);
+      alert("You have successfully created your account");
+      router.push("/sign-in");
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+}
 </script>
 
 <style scoped>
@@ -62,12 +129,9 @@ let router = useRouter();
   transform: translate(-50%, -50%);
   text-align: center;
 }
-h3 a {
-  text-decoration: none;
-}
 img {
-  width: 10em;
-  height: 10em;
+  width: 9em;
+  height: 9em;
 }
 .icon {
   margin-top: 2em;
@@ -86,13 +150,13 @@ h1 {
   text-align: center;
 }
 form {
-  width: 40em;
+  width: 45em;
   margin: 1em auto;
   background-color: transparent;
   box-shadow: 0.2em 0 0.4em 0 rgba(0, 0, 0, 0.5);
 }
 label {
-  margin: 0.5em;
+  margin: 1em;
 }
 .inputs {
   display: flex;
@@ -100,22 +164,22 @@ label {
   align-items: center;
 }
 input[type="text"] {
-  width: 85%;
+  width: 40em;
   padding: 0.5em;
   margin: 0.5em;
 }
 input[type="password"] {
-  width: 85%;
+  width: 40em;
   padding: 0.5em;
   margin: 0.5em;
 }
 input[type="email"] {
-  width: 85%;
+  width: 40em;
   padding: 0.5em;
   margin: 0.5em;
 }
 input[type="phone"] {
-  width: 85%;
+  width: 40em;
   padding: 0.5em;
   margin: 0.5em;
 }

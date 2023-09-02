@@ -11,11 +11,11 @@
   <div class="order" v-else>
     <h1>----------Your Order Summry---------</h1>
     <ul class="summeryheader">
-      <li>Serial No:</li>
-      <li>Name:</li>
-      <li>Price:</li>
-      <li>quantity:</li>
-      <li>Total Price:</li>
+      <li>Serial No</li>
+      <li>Name</li>
+      <li>Price</li>
+      <li>quantity</li>
+      <li>Total Price</li>
     </ul>
     <ul v-for="record in store.cartitems" :key="record.id" class="details">
       <li>{{ record.id }}</li>
@@ -28,17 +28,27 @@
       <li>Grand Total</li>
       <li>{{ store.Gtotal }}</li>
     </ul>
+    <ul class="gtotal">
+      <li>Shipping Fee</li>
+      <li>{{ shipping }}</li>
+    </ul>
     <button>Add payment Details to place order</button>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { useGroceryStore } from "../stores/grocery";
 import Header from "../components/Header.vue";
 
 let store = useGroceryStore();
-let n = ref(0);
+const shipping = computed(() => {
+  if ((store.cartitems.length = 1 || store.cartitems.length < 3)) {
+    return 150;
+  } else if (store.cartitems.length >= 3) {
+    return 100;
+  } else if (store.cartitems.length > 5) return "Free";
+});
 </script>
 
 <style scoped>
@@ -52,6 +62,7 @@ let n = ref(0);
   filter: blur(5px);
 }
 h1 {
+  margin: 2em 0;
   text-align: center;
 }
 .order {

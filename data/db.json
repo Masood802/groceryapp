@@ -73,18 +73,58 @@
   ],
   "users": [
     {
-      "id": 1,
-      "fname": "Masood",
-      "lname": "Ur Rehman",
+      "firstName": "Masood",
+      "lastName": "Ur Rehman",
+      "cellno": "0300-3370270",
       "email": "masoodsse@gmail.com",
-      "password": "123456"
+      "passwrod": "123456",
+      "confrimpassword": "123456",
+      "id": 1
     },
     {
-      "id": 2,
-      "fname": "Sulaiman",
-      "lname": "masoood",
-      "email": "sulaiman@gmail.com",
-      "password": "123456"
+      "firstName": "Sulaiman",
+      "lastName": "Masood",
+      "cellno": "0300-3370270",
+      "email": "sulaiman123@gmail.com",
+      "passwrod": "123456",
+      "confrimpassword": "123456",
+      "id": 2
+    },
+    {
+      "firstName": "Saeed",
+      "lastName": "Ahmed",
+      "cellno": "0345-8011058",
+      "email": "saeed143@gmail.com",
+      "password": "123456",
+      "confirmpassword": "123456",
+      "id": 3
+    },
+    {
+      "firstName": "Talat",
+      "lastName": "Mehmood",
+      "cellno": "0304-7720056",
+      "email": "talat@gmail.com",
+      "password": "123456",
+      "confirmpassword": "123456",
+      "id": 4
+    },
+    {
+      "firstName": "Imran",
+      "lastName": "Majeed",
+      "cellno": "0302-7621048",
+      "email": "imranmajeed@gmail.com",
+      "password": "123456",
+      "confirmpassword": "123456",
+      "id": 5
+    },
+    {
+      "firstName": "masood",
+      "lastName": "ur rehman",
+      "cellno": "0300-3370270",
+      "email": "masoodsse@gmail.com",
+      "password": "123456",
+      "confirmpassword": "123456",
+      "id": 6
     }
   ]
 }

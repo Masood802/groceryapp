@@ -1,7 +1,7 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import Itemlist from '../views/Itemlist.vue'
-import Register from "../views/Register.vue"
+import { createRouter, createWebHistory } from "vue-router";
+import HomeView from "../views/HomeView.vue";
+import Itemlist from "../views/Itemlist.vue";
+import Signup from "../views/Signup.vue";
 import Cart from "../views/Cart.vue";
 import Signin from "../views/SignIn.vue";
 import CheckoutForm from "../views/CheckoutForm.vue";
@@ -28,8 +28,8 @@ const router = createRouter({
     },
     {
       path: "/registration-form",
-      name: "Register",
-      component: Register,
+      name: "signup",
+      component: Signup,
     },
     {
       path: "/cart",
@@ -49,4 +49,4 @@ const router = createRouter({
   ],
 });
 
-export default router
+export default router;
