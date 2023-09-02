@@ -61,9 +61,9 @@ export const useGroceryStore = defineStore("grocery", () => {
   function calculateshipping() {
     if (Gtotal.value <= 500) {
       shipping.value = 150;
-      console.log("shipping");
+      console.log(shipping.value);
     }
-    if (Gtotal.value <= 1000) {
+    if (Gtotal.value <= 1000 && Gtotal.value >= 501) {
       shipping.value = 100;
     }
     if (Gtotal.value >= 1001) {
