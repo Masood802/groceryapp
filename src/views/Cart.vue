@@ -40,11 +40,9 @@ function Delete(id) {
   let delitem = store.cartitems.find((item) => item.id === id);
   if (delitem.quantity > 1) {
     delitem.quantity--;
-    store.cart--;
     store.UpdateCart();
   } else {
     store.cartitems = store.cartitems.filter((item) => item.id != id);
-    store.cart--;
     store.UpdateCart();
   }
 }

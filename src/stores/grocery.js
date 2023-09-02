@@ -10,8 +10,9 @@ export const useGroceryStore = defineStore("grocery", () => {
   let logedin = ref(false);
   let email = ref("");
   let password = ref("");
-  let user = ref([]);
+  let user = ref({});
   let router = useRouter();
+  let shipping = ref(0);
 
   onMounted(() => {
     let storeditem = localStorage.getItem("cart");
@@ -38,7 +39,6 @@ export const useGroceryStore = defineStore("grocery", () => {
       console.log(res.data);
       router.push("/");
       localStorage.setItem("user", JSON.stringify(user.value));
-      console.log(localStorage);
       logedin.value = true;
       email.value = "";
       password.value = "";
@@ -58,9 +58,22 @@ export const useGroceryStore = defineStore("grocery", () => {
   let totalitems = computed(() => {
     return cartitems.value.reduce((total, item) => total + item.quantity, 0);
   });
+  function calculateshipping() {
+    if (Gtotal.value <= 500) {
+      shipping.value = 150;
+      console.log("shipping");
+    }
+    if (Gtotal.value <= 1000) {
+      shipping.value = 100;
+    }
+    if (Gtotal.value >= 1001) {
+      shipping.value = 0;
+    }
+  }
   return {
     cartitems,
     Gtotal,
+    shipping,
     totalitems,
     UpdateCart,
     email,
@@ -71,5 +84,6 @@ export const useGroceryStore = defineStore("grocery", () => {
     logedin,
     user,
     items,
+    calculateshipping,
   };
 });

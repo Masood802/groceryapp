@@ -25,29 +25,33 @@
       <li>{{ record.price * record.quantity }}</li>
     </ul>
     <ul class="gtotal">
-      <li>Grand Total</li>
+      <li>Total</li>
       <li>{{ store.Gtotal }}</li>
     </ul>
     <ul class="gtotal">
       <li>Shipping Fee</li>
-      <li>{{ shipping }}</li>
+      <li>{{ store.shipping }}</li>
     </ul>
-    <button>Add payment Details to place order</button>
+    <ul class="gtotal">
+      <li>Grand Total</li>
+      <li>{{ store.shipping + store.Gtotal }}</li>
+    </ul>
+    <button @click="router.push('/payment-details')">
+      Add payment Details to confirm order
+    </button>
   </div>
 </template>
 
 <script setup>
-import { computed, ref } from "vue";
 import { useGroceryStore } from "../stores/grocery";
 import Header from "../components/Header.vue";
+import { onMounted } from "vue";
+import { useRouter } from "vue-router";
 
 let store = useGroceryStore();
-const shipping = computed(() => {
-  if ((store.cartitems.length = 1 || store.cartitems.length < 3)) {
-    return 150;
-  } else if (store.cartitems.length >= 3) {
-    return 100;
-  } else if (store.cartitems.length > 5) return "Free";
+let router = useRouter();
+onMounted(() => {
+  store.calculateshipping();
 });
 </script>
 
@@ -62,7 +66,7 @@ const shipping = computed(() => {
   filter: blur(5px);
 }
 h1 {
-  margin: 2em 0;
+  margin: 1em 0;
   text-align: center;
 }
 .order {
