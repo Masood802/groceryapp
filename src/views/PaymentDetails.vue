@@ -10,11 +10,11 @@
       </div>
       <div class="input-control">
         <label for="cardnum">Card No</label>
-        <input type="Number" name="cardnum" />
+        <input type="text" name="cardnum" />
       </div>
       <div class="input-control">
         <label for="expiry">Expiration Date</label>
-        <input type="text" name="expiry" />
+        <input type="date" name="expiry" />
       </div>
       <div class="input-control">
         <label for="expiry"> </label>
@@ -22,7 +22,7 @@
       </div>
       <div class="input-control">
         <label for="CVC"> </label>
-        <input type="Number" name="CVC" />
+        <input type="text" name="CVC" />
       </div>
     </form>
   </div>
@@ -41,13 +41,8 @@ import Header from "../components/Header.vue";
   margin: 1em;
 }
 h1 {
-  margin: 2em auto;
+  margin: 0.5em auto;
   text-align: center;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1;
 }
 .main {
   width: 100%;
@@ -59,6 +54,31 @@ h1 {
   filter: blur(5px);
 }
 .payment {
-  width: 80%;
+  width: 50%;
+  height: 30em;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  box-shadow: 0.2em 0 0.4em 0 rgba(0, 0, 0, 0.5);
+}
+.input-control {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+input[type="text"],
+input[type="date"] {
+  width: 75%;
+  padding: 0.5em;
+  border: 1px solid lightgray;
+  background-color: transparent;
+  margin: 0.5em;
+}
+label {
+  width: 75%;
+  color: rgb(76, 77, 78);
 }
 </style>
