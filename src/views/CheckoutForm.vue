@@ -65,6 +65,17 @@ onMounted(() => {
   background-position: center;
   filter: blur(5px);
 }
+.msg {
+  width: 60em;
+  background-color: transparent;
+  margin: auto;
+  height: 30em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
 h1 {
   margin: 1em 0;
   text-align: center;

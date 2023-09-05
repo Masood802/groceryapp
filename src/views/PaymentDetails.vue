@@ -3,7 +3,7 @@
   <div class="navs"><Header></Header></div>
   <div class="payment">
     <h1>Payment Information</h1>
-    <form action="">
+    <form @submit.prevent="Submit">
       <div class="input-control">
         <label for="name">Name on card</label>
         <input type="text" name="name" />
@@ -12,27 +12,41 @@
         <label for="cardnum">Card No</label>
         <input type="text" name="cardnum" />
       </div>
-      <div class="input-control">
-        <label for="expiry">Expiration Date</label>
-        <input type="date" name="expiry" />
+      <div class="expiry">
+        <div class="input-control-exp">
+          <label for="expiry">Expiration Date</label>
+          <input type="text" name="expiry" placeholder="Month" />
+        </div>
+        <div class="input-control-exp">
+          <label for="expiry">&nbsp;</label>
+          <input type="text" name="expiry" placeholder="Year" />
+        </div>
+        <div class="input-control-cvc">
+          <label for="CVC">CVC </label>
+          <input type="text" name="CVC" placeholder="cvc" />
+        </div>
       </div>
-      <div class="input-control">
-        <label for="expiry"> </label>
-        <input type="text" name="expiry" />
+
+      <div class="gtotal">
+        <p>Total Payment: {{ store.shipping + store.Gtotal }}</p>
       </div>
-      <div class="input-control">
-        <label for="CVC"> </label>
-        <input type="text" name="CVC" />
-      </div>
+      <button>Confirm Payment</button>
     </form>
   </div>
 </template>
 
 <script setup>
 import Header from "../components/Header.vue";
+import { useGroceryStore } from "../stores/grocery";
+let store = useGroceryStore();
 </script>
 
 <style scoped>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 .navs {
   position: absolute;
   top: 0;
@@ -69,8 +83,49 @@ h1 {
   align-items: center;
   flex-direction: column;
 }
-input[type="text"],
-input[type="date"] {
+.expiry {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 80%;
+  margin: auto;
+}
+.input-control-exp {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  margin: auto;
+}
+.input-control-exp input[type="text"] {
+  width: 90%;
+  margin: 0 1em;
+  border: 1px solid lightgray;
+  background-color: transparent;
+}
+.input-control-exp label {
+  width: 90%;
+  margin: 0.5em 2.2em;
+  color: rgb(76, 77, 78);
+  text-align: left;
+}
+.input-control-cvc {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.input-control-cvc input[type="text"] {
+  width: 45%;
+  margin: 0.5em 5.5em;
+  border: 1px solid lightgray;
+  background-color: transparent;
+}
+.input-control-cvc label {
+  width: 45%;
+  margin: 1em 5em 0 5em;
+}
+input[type="text"] {
   width: 75%;
   padding: 0.5em;
   border: 1px solid lightgray;
@@ -80,5 +135,21 @@ input[type="date"] {
 label {
   width: 75%;
   color: rgb(76, 77, 78);
+}
+.gtotal {
+  text-align: right;
+  margin: 1em;
+  font-weight: bold;
+  color: rgb(44, 42, 42);
+}
+button {
+  width: 75%;
+  padding: 1em 1.5em;
+  margin: 1em 5.5em;
+  border: none;
+  background-color: darkgreen;
+  color: white;
+  border-radius: 0.5em;
+  font-size: 0.8em;
 }
 </style>
