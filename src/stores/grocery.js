@@ -40,6 +40,7 @@ export const useGroceryStore = defineStore("grocery", () => {
       router.push("/");
       localStorage.setItem("user", JSON.stringify(user.value));
       logedin.value = true;
+      console.log(localStorage);
       email.value = "";
       password.value = "";
     }
