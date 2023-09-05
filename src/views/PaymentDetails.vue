@@ -2,15 +2,26 @@
   <div class="main"></div>
   <div class="navs"><Header></Header></div>
   <div class="payment">
+    <div class="card">
+      <img src="../assets/pngwing.png" alt="" />
+      <pre>{{ cardNo }}</pre>
+      <p>{{ HolderName }}</p>
+      <h5>VALID THRU</h5>
+    </div>
     <h1>Payment Information</h1>
     <form @submit.prevent="Submit">
       <div class="input-control">
         <label for="name">Name on card</label>
-        <input type="text" name="name" />
+        <input type="text" name="name" v-model="HolderName" />
       </div>
       <div class="input-control">
         <label for="cardnum">Card No</label>
-        <input type="text" name="cardnum" />
+        <input
+          type="text"
+          name="cardnum"
+          v-model="cardNo"
+          @keyup="updateCardNo"
+        />
       </div>
       <div class="expiry">
         <div class="input-control-exp">
@@ -36,9 +47,18 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
 import Header from "../components/Header.vue";
 import { useGroceryStore } from "../stores/grocery";
 let store = useGroceryStore();
+let cardNo = ref("XXXX  XXXX  XXXX  XXXX");
+let HolderName = ref("");
+let yaer = ref("");
+let month = ref("");
+let cvc = ref("");
+function updateCardNo() {
+  cardNo.value = input.value;
+}
 </script>
 
 <style scoped>
@@ -58,11 +78,42 @@ h1 {
   margin: 0.5em auto;
   text-align: center;
 }
+p {
+  position: relative;
+  top: 70px;
+  left: 20px;
+  color: rgb(226, 204, 204);
+  font-weight: bold;
+  font-size: 1em;
+}
+pre {
+  position: relative;
+  top: 60px;
+  left: 10px;
+  color: rgb(226, 204, 204);
+  font-weight: bold;
+  font-size: 1.2em;
+  text-indent: 2em;
+}
+h5 {
+  position: relative;
+  top: 90px;
+  left: 20px;
+  color: rgb(226, 204, 204);
+  font-weight: bold;
+}
+img {
+  width: 2em;
+  height: 2em;
+  position: relative;
+  top: 30px;
+  left: 30px;
+}
 .main {
   width: 100%;
   background-image: url("../assets/background11.jpg");
   background-size: cover;
-  height: 38em;
+  height: 40em;
   background-repeat: no-repeat;
   background-position: center;
   filter: blur(5px);
@@ -82,6 +133,14 @@ h1 {
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
+}
+.card {
+  width: 45%;
+  height: 12em;
+  box-shadow: 0.2em 0 0.4em 0 rgba(0, 0, 0, 0.5);
+  background-image: url("../assets/card.jpg");
+  border-radius: 0.5em;
+  margin: 0.5em auto;
 }
 .expiry {
   display: flex;
