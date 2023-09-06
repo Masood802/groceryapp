@@ -5,8 +5,8 @@
     <div class="card">
       <img src="../assets/pngwing.png" alt="" />
       <pre>{{ cardNo }}</pre>
-      <p>{{ HolderName }}</p>
-      <h5>VALID THRU</h5>
+      <h3>{{ HolderName }}</h3>
+      <h5>VALID THRU<br />{{ month }}/{{ year }}</h5>
     </div>
     <h1>Payment Information</h1>
     <form @submit.prevent="Submit">
@@ -18,46 +18,86 @@
         <label for="cardnum">Card No</label>
         <input
           type="text"
+          id="cardNo"
           name="cardnum"
           v-model="cardNo"
-          @keyup="updateCardNo"
+          @input="updateCardNo"
         />
       </div>
       <div class="expiry">
         <div class="input-control-exp">
           <label for="expiry">Expiration Date</label>
-          <input type="text" name="expiry" placeholder="Month" />
+          <input
+            type="text"
+            name="expiry"
+            placeholder="Month"
+            v-model="month"
+            @keyup="updatemonth"
+          />
         </div>
         <div class="input-control-exp">
           <label for="expiry">&nbsp;</label>
-          <input type="text" name="expiry" placeholder="Year" />
+          <input
+            type="text"
+            name="expiry"
+            placeholder="Year"
+            v-model="year"
+            @keyup="updateyear"
+          />
         </div>
         <div class="input-control-cvc">
           <label for="CVC">CVC </label>
-          <input type="text" name="CVC" placeholder="cvc" />
+          <input type="text" name="CVC" placeholder="cvc" v-model="cvc" />
         </div>
       </div>
 
       <div class="gtotal">
         <p>Total Payment: {{ store.shipping + store.Gtotal }}</p>
       </div>
-      <button>Confirm Payment</button>
+      <button @click="confirm">Confirm Payment</button>
     </form>
+    <div class="paymentok" v-if="paymentdone">
+      <p>Your Payment is Successful.check your account for ordertracking</p>
+      <button @click="router.push('item-list')">Continue Shopping</button>
+    </div>
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 import Header from "../components/Header.vue";
 import { useGroceryStore } from "../stores/grocery";
 let store = useGroceryStore();
-let cardNo = ref("XXXX  XXXX  XXXX  XXXX");
-let HolderName = ref("");
-let yaer = ref("");
+let cardNo = ref("####  ####  ####  ####");
+let HolderName = ref("CardHolderName");
+let year = ref("");
 let month = ref("");
 let cvc = ref("");
+let paymentdone = ref(false);
+let router = useRouter();
 function updateCardNo() {
-  cardNo.value = input.value;
+  cardNo.value = document.getElementById("cardNo").value;
+}
+function updatemonth() {
+  month.value = input.value;
+}
+function updateyear() {
+  year.value = input.value;
+}
+function confirm() {
+  if (
+    cardNo.value === "" ||
+    HolderName.value === "" ||
+    month.value === "" ||
+    year.value === ""
+  ) {
+    console.warn("Not-Valid Data");
+    alert("Enter Valid data and try again");
+  } else {
+    paymentdone.value = true;
+    localStorage.removeItem("cart");
+  }
 }
 </script>
 
@@ -67,6 +107,7 @@ function updateCardNo() {
   margin: 0;
   padding: 0;
 }
+
 .navs {
   position: absolute;
   top: 0;
@@ -80,11 +121,16 @@ h1 {
 }
 p {
   position: relative;
-  top: 70px;
-  left: 20px;
-  color: rgb(226, 204, 204);
+  left: 0.5em;
+  color: rgb(63, 53, 53);
   font-weight: bold;
   font-size: 1em;
+}
+h3 {
+  position: relative;
+  top: 5.5em;
+  left: 0.5em;
+  color: rgb(241, 224, 224);
 }
 pre {
   position: relative;
@@ -97,10 +143,10 @@ pre {
 }
 h5 {
   position: relative;
-  top: 90px;
-  left: 20px;
+  top: 6.5em;
+  left: 7.5em;
   color: rgb(226, 204, 204);
-  font-weight: bold;
+  text-align: center;
 }
 img {
   width: 2em;
@@ -112,19 +158,18 @@ img {
 .main {
   width: 100%;
   background-image: url("../assets/background11.jpg");
-  background-size: cover;
-  height: 40em;
+  background-size: 100%;
+  height: 42em;
   background-repeat: no-repeat;
-  background-position: center;
+
   filter: blur(5px);
 }
 .payment {
   width: 50%;
-  height: 30em;
+  height: 37em;
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  left: 20em;
+  top: 5em;
   z-index: 1;
   box-shadow: 0.2em 0 0.4em 0 rgba(0, 0, 0, 0.5);
 }
@@ -210,5 +255,17 @@ button {
   color: white;
   border-radius: 0.5em;
   font-size: 0.8em;
+}
+.paymentok {
+  width: 50%;
+  padding: 1em;
+  background-color: beige;
+  box-shadow: 0.2em 0 0.4em 0 rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 6em;
+  left: 10.5em;
+}
+.paymentok button {
+  margin: 1.5em 3em;
 }
 </style>
