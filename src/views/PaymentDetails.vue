@@ -96,7 +96,8 @@ function confirm() {
     alert("Enter Valid data and try again");
   } else {
     paymentdone.value = true;
-    localStorage.removeItem("cart");
+    localStorage.clear;
+    store.cartitems.value = [];
   }
 }
 </script>
@@ -134,12 +135,12 @@ h3 {
 }
 pre {
   position: relative;
-  top: 60px;
-  left: 10px;
+  top: 50px;
   color: rgb(226, 204, 204);
   font-weight: bold;
   font-size: 1.2em;
   text-indent: 2em;
+  letter-spacing: 3px;
 }
 h5 {
   position: relative;
