@@ -4,7 +4,7 @@ import axios from "axios";
 import { useRouter } from "vue-router";
 
 export const useGroceryStore = defineStore("grocery", () => {
-  const cartitems = ref([]);
+  let cartitems = ref([]);
   let items = ref({});
   let error = ref(null);
   let logedin = ref(false);
@@ -30,19 +30,24 @@ export const useGroceryStore = defineStore("grocery", () => {
     localStorage.setItem("cart", JSON.stringify(cartitems.value));
   }
   async function signin() {
-    let res = await axios.get(
-      `http://localhost:3000/users?email=${email.value}&password=${password.value}`
-    );
-    if (res.status === 200) {
-      user.value = await res.data[0];
-      alert("You have successfully loged in");
-      console.log(res.data);
-      router.push("/");
-      localStorage.setItem("user", JSON.stringify(user.value));
-      logedin.value = true;
-      console.log(localStorage);
-      email.value = "";
-      password.value = "";
+    if (email.value === "" || password.value === "") {
+      alert("Enter Valid email/Password and try again");
+    } else {
+      let res = await axios.get(
+        `http://localhost:3000/users?email=${email.value}&password=${password.value}`
+      );
+
+      if (res.status === 200) {
+        user.value = await res.data[0];
+        alert("You have successfully loged in");
+        console.log(res.data);
+        router.push("/");
+        localStorage.setItem("user", JSON.stringify(user.value));
+        logedin.value = true;
+        console.log(localStorage);
+        email.value = "";
+        password.value = "";
+      }
     }
   }
   function signout() {

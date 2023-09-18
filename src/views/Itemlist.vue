@@ -29,7 +29,7 @@
   <the-footer></the-footer>
 </template>
 <script setup>
-import { computed, onMounted, ref } from "vue";
+import { computed, onBeforeMount, onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 import { useGroceryStore } from "../stores/grocery";
 import Header from "../components/Header.vue";
@@ -42,7 +42,7 @@ function availabilty(item) {
   else if (item.stock < 10 && item.stock > 0) return "Low-Stock";
   else return "Not-Available";
 }
-onMounted(async () => {
+onBeforeMount(async () => {
   const res = await axios.get("http://localhost:3000/items");
   store.items = await res.data;
 });

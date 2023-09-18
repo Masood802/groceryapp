@@ -33,6 +33,7 @@
             placeholder="Month"
             v-model="month"
             @keyup="updatemonth"
+            id="month"
           />
         </div>
         <div class="input-control-exp">
@@ -43,11 +44,19 @@
             placeholder="Year"
             v-model="year"
             @keyup="updateyear"
+            id="year"
           />
         </div>
         <div class="input-control-cvc">
           <label for="CVC">CVC </label>
-          <input type="text" name="CVC" placeholder="cvc" v-model="cvc" />
+          <input
+            type="text"
+            name="CVC"
+            placeholder="cvc"
+            v-model="cvc"
+            id="cvc"
+            @input="updatecvc"
+          />
         </div>
       </div>
 
@@ -80,10 +89,10 @@ function updateCardNo() {
   cardNo.value = document.getElementById("cardNo").value;
 }
 function updatemonth() {
-  month.value = input.value;
+  month.value = document.getElementById("month").value;
 }
 function updateyear() {
-  year.value = input.value;
+  year.value = document.getElementById("year").value;
 }
 function confirm() {
   if (
@@ -96,9 +105,17 @@ function confirm() {
     alert("Enter Valid data and try again");
   } else {
     paymentdone.value = true;
-    localStorage.clear;
-    store.cartitems.value = [];
+    localStorage.clear();
+    store.cartitems = [];
+    cardNo.value = "XXXX XXXX XXXX XXXX";
+    HolderName.value = "";
+    month.value = "";
+    year.value = "";
+    store.shipping = 0;
   }
+}
+function updatecvc() {
+  cvc.value = document.getElementById("cvc").value;
 }
 </script>
 

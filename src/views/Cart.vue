@@ -1,6 +1,6 @@
 <template>
   <Header></Header>
-  <h1>Cart </h1>
+  <h1>Cart</h1>
   <div class="conatiner" v-if="store.cartitems.length">
     <div class="items" v-for="record in store.cartitems" :key="record.id">
       <img :src="record.image" alt="ShowImage" />
@@ -24,7 +24,7 @@
     <p>There are no items in cart.....</p>
   </div>
   <div class="button">
-    <button @click="router.push('/item-list')">Back to List</button>
+    <button @click="router.push('/item-list')">Add items to Cart</button>
   </div>
   <the-footer></the-footer>
 </template>
@@ -34,6 +34,8 @@ import { useRouter } from "vue-router";
 import { useGroceryStore } from "../stores/grocery";
 import Header from "../components/Header.vue";
 import TheFooter from "../components/TheFooter.vue";
+import { onMounted } from "vue";
+
 let store = useGroceryStore();
 let router = useRouter();
 function Delete(id) {

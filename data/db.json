@@ -26,7 +26,7 @@
       "title": "Raddish",
       "price": 200,
       "image": "../src/assets/raddish.png",
-      "stock": 0
+      "stock": 12
     },
     {
       "id": 4,

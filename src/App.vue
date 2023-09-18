@@ -1,15 +1,16 @@
 <script setup>
 import { onMounted } from "vue";
-import { RouterLink, RouterView } from "vue-router";
+import { RouterLink, RouterView, useRouter } from "vue-router";
 import { useGroceryStore } from "./stores/grocery";
-let store = useGroceryStore;
-onMounted(() => {
+let store = useGroceryStore();
+let router = useRouter();
+onMounted((async) => {
   let data = localStorage.getItem("user");
+  data = JSON.parse(data);
+  console.log(data);
   if (data) {
-    try {
-      data = JSON.parse(data);
-      store.user = data;
-    } catch (e) {}
+    store.user = data;
+    store.logedin = true;
   }
 });
 </script>
