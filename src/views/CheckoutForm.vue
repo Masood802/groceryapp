@@ -17,8 +17,12 @@
       <li>quantity</li>
       <li>Total Price</li>
     </ul>
-    <ul v-for="record in store.cartitems" :key="record.id" class="details">
-      <li>{{ record.id }}</li>
+    <ul
+      v-for="(record, index) in store.cartitems"
+      :key="record.id"
+      class="details"
+    >
+      <li>{{ index + 1 }}</li>
       <li>{{ record.title }}</li>
       <li>{{ record.price }}</li>
       <li>{{ record.quantity }}</li>

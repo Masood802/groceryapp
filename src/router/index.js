@@ -31,6 +31,7 @@ const router = createRouter({
       path: "/registration-form",
       name: "signup",
       component: Signup,
+      meta: { authPage: true },
     },
     {
       path: "/cart",
@@ -41,6 +42,7 @@ const router = createRouter({
       path: "/sign-in",
       name: "Signin",
       component: Signin,
+      meta: { authPage: true },
     },
     {
       path: "/checkout-form",
