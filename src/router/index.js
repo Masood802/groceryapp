@@ -6,6 +6,7 @@ import Cart from "../views/Cart.vue";
 import Signin from "../views/SignIn.vue";
 import CheckoutForm from "../views/CheckoutForm.vue";
 import PaymentDetails from "../views/PaymentDetails.vue";
+import { useGroceryStore } from "../stores/grocery";
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -32,6 +33,12 @@ const router = createRouter({
       name: "signup",
       component: Signup,
       meta: { authPage: true },
+      // beforeEnter(to, from, next) {
+      //   let store = useGroceryStore();
+      //   if (to.meta.authPage && store.logedin) {
+      //     next("/");
+      //   } else next("/registration-form");
+      // },
     },
     {
       path: "/cart",
@@ -43,6 +50,12 @@ const router = createRouter({
       name: "Signin",
       component: Signin,
       meta: { authPage: true },
+      beforeEnter(to, from, next) {
+        let store = useGroceryStore();
+        if (to.meta.authPage && !store.logedin) {
+          next("/sign-in");
+        } else next("/");
+      },
     },
     {
       path: "/checkout-form",
@@ -56,5 +69,13 @@ const router = createRouter({
     },
   ],
 });
+// router.beforeEach(function (to, from, next) {
+//   let store = useGroceryStore();
+//   if (to.meta.authPage && store.logedin) {
+//     next("/");
+//   } else {
+//     next();
+//   }
+// });
 
 export default router;

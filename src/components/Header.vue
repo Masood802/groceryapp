@@ -15,10 +15,14 @@
     <div class="sigining">
       <router-link :to="{ path: '/sign-in' }"
         ><span v-if="store.logedin === false">Signin</span
-        ><span v-else
+        ><span v-else @click="show"
           >Welcome {{ store.user.firstName }}</span
         ></router-link
       >
+      <div class="buttons" v-if="toggleshow">
+        <button>Signout</button>
+        <button>User Profile</button>
+      </div>
       <router-link
         :to="{ path: '/registration-form' }"
         v-if="store.logedin === false"
@@ -31,8 +35,14 @@
 <script setup>
 import { RouterLink, useRouter } from "vue-router";
 import { useGroceryStore } from "../stores/grocery";
+import { ref } from "vue";
 let store = useGroceryStore();
 let router = useRouter();
+let toggleshow = ref();
+function show() {
+  toggleshow.value = !toggleshow.value;
+  console.log(toggleshow.value);
+}
 </script>
 <style scoped>
 .header {
@@ -54,6 +64,28 @@ let router = useRouter();
   font-size: 1em;
   color: darkgreen;
   text-decoration: none;
+}
+.sigining {
+  width: 20%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.buttons {
+  display: flex;
+}
+button {
+  width: 7em;
+  padding: 0.5em 1em;
+  border: none;
+  margin: 0 0.5em;
+  background-color: darkgreen;
+  color: white;
+  border-radius: 0.5em;
+  font-size: 0.7em;
+}
+.sigining span:hover .buttons {
+  display: flex;
 }
 .sigining {
   width: 15%;
