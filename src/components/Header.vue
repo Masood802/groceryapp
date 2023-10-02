@@ -19,9 +19,9 @@
           >Welcome {{ store.user.firstName }}</span
         ></router-link
       >
-      <div class="buttons" v-if="toggleshow">
-        <button>Signout</button>
-        <button>User Profile</button>
+      <div class="buttons" v-if="toggleshow && store.logedin">
+        <button @click="store.signout()">Signout</button>
+        <button @click="router.push('/profile')">Profile</button>
       </div>
       <router-link
         :to="{ path: '/registration-form' }"
