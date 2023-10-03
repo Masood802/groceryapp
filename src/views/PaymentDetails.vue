@@ -105,7 +105,9 @@ function confirm() {
     alert("Enter Valid data and try again");
   } else {
     paymentdone.value = true;
-    localStorage.clear();
+    console.log(localStorage);
+    localStorage.setItem("order", JSON.stringify(cart));
+    localStorage.removeItem("cart");
     store.cartitems = [];
     cardNo.value = "XXXX XXXX XXXX XXXX";
     HolderName.value = "";

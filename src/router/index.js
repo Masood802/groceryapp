@@ -8,6 +8,7 @@ import CheckoutForm from "../views/CheckoutForm.vue";
 import PaymentDetails from "../views/PaymentDetails.vue";
 import { useGroceryStore } from "../stores/grocery";
 import Profile from "../views/Profile.vue";
+import OrderHistory from "../views/OrderHistory.vue";
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -72,6 +73,11 @@ const router = createRouter({
       path: "/profile",
       name: "Profile",
       component: Profile,
+    },
+    {
+      path: "/order-history",
+      name: "OrderHistory",
+      component: OrderHistory,
     },
   ],
 });
