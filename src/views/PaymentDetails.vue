@@ -78,11 +78,11 @@ import { useRouter } from "vue-router";
 import Header from "../components/Header.vue";
 import { useGroceryStore } from "../stores/grocery";
 let store = useGroceryStore();
-let cardNo = ref("####  ####  ####  ####");
-let HolderName = ref("CardHolderName");
-let year = ref("");
-let month = ref("");
-let cvc = ref("");
+let cardNo = ref("1200 1400 1300 2100");
+let HolderName = ref("MAsood UR Rehman");
+let year = ref("2025");
+let month = ref("12");
+let cvc = ref("369");
 let paymentdone = ref(false);
 let router = useRouter();
 function updateCardNo() {
@@ -105,8 +105,8 @@ function confirm() {
     alert("Enter Valid data and try again");
   } else {
     paymentdone.value = true;
-    console.log(localStorage);
-    localStorage.setItem("order", JSON.stringify(cart));
+    store.orderDetail = store.cartitems;
+    localStorage.setItem("order", JSON.stringify(store.orderDetail));
     localStorage.removeItem("cart");
     store.cartitems = [];
     cardNo.value = "XXXX XXXX XXXX XXXX";

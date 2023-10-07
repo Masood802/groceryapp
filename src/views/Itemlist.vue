@@ -18,7 +18,7 @@
         Signin to add items
       </button>
       <button
-        @click="router.push('/registration-form')"
+        @click="buy(item)"
         :class="{ disabled: item.stock === 0 }"
         v-if="store.logedin"
       >
@@ -54,7 +54,10 @@ function Additems(item) {
     store.cartitems.push({ ...item, quantity: 1 });
   }
   store.UpdateCart();
-  console.log(localStorage);
+}
+function buy(item) {
+  Additems(item);
+  router.push("/checkout-form");
 }
 </script>
 <style scoped>

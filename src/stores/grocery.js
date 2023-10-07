@@ -13,6 +13,7 @@ export const useGroceryStore = defineStore("grocery", () => {
   let user = ref({});
   let router = useRouter();
   let shipping = ref(0);
+  let orderDetail = ref([]);
 
   onMounted(() => {
     let storeditem = localStorage.getItem("cart");
@@ -91,5 +92,6 @@ export const useGroceryStore = defineStore("grocery", () => {
     user,
     items,
     calculateshipping,
+    orderDetail,
   };
 });

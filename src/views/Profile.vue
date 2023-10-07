@@ -12,7 +12,9 @@
       Check Order History
     </button>
   </div>
-  <the-footer></the-footer>
+  <div class="footer">
+    <the-footer></the-footer>
+  </div>
 </template>
 
 <script setup>
@@ -54,5 +56,10 @@ button {
   color: white;
   border-radius: 0.5em;
   font-size: 0.9em;
+}
+.footer {
+  width: 100%;
+  position: absolute;
+  bottom: 10px;
 }
 </style>
