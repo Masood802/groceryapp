@@ -12,7 +12,7 @@
     </div>
     <div class="order-detail">
       <p>{{ order.title }}</p>
-      <h5>&#215 {{ order.quantity }}</h5>
+      <h5> &#215 {{ order.quantity }}</h5>
       <h5>price = {{ order.quantity * order.price }}</h5>
     </div>
   </div>
